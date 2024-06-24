@@ -5,6 +5,7 @@ import mongoose from "mongoose";
 import dotenv from 'dotenv';
 import cookieParser from "cookie-parser";
 import cors from "cors";
+import { log } from "node:util";
 
 dotenv.config();
 
@@ -25,7 +26,7 @@ server.listen(PORT, (): void => {
 });
 
 mongoose.Promise = Promise;
-mongoose.connect(process.env.MONODB_CONNECTION_URL!).;
+mongoose.connect(process.env.MONODB_CONNECTION_URL!).then(() => console.log("Connected to MongoDB"));
 
 mongoose.connection.on('error', (error: Error) => {
     console.error(error);
